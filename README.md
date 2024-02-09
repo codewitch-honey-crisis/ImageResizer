@@ -6,7 +6,7 @@ Basically you set up a monitor folder using the app. While the app is running, i
 
 `[<min_width>][x<min_height>][_[<max_width>][x<max_height>]][.<format>]`
 
-Examples (all preserve aspect ratio)
+Examples of ancestor folder names (all preserve aspect ratio, all monitor all subfolders)
 
 - _640 (max width of 640)
 
