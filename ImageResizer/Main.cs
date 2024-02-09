@@ -234,7 +234,7 @@ namespace ImageResizer
 			}
 			return _DirEntry.Empty;
 		}
-		static void UpdateFile(FileSystemEventArgs e)
+		static void _UpdateFile(FileSystemEventArgs e)
 		{
 			if (File.Exists(e.FullPath))
 			{
@@ -336,16 +336,15 @@ namespace ImageResizer
 					}
 				}
 			}
-
 		}
 		private void FolderWatcher_Changed(object sender, FileSystemEventArgs e)
 		{
-			UpdateFile(e);
+			_UpdateFile(e);
 		}
 
 		private void FolderWatcher_Created(object sender, FileSystemEventArgs e)
 		{
-			UpdateFile(e);
+			_UpdateFile(e);
 		}
 
 		private void FolderWatcher_Renamed(object sender, RenamedEventArgs e)
