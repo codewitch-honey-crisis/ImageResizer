@@ -36,17 +36,11 @@ namespace ImageResizer
 			{
 				return Min.GetHashCode()^Max.GetHashCode()^Format.GetHashCode();
 			}
-			public bool Equals(_DirEntry rhs)
+			public bool IsEmpty
 			{
-				return (rhs.Min == Min && rhs.Max == Max && rhs.Format == Format);
+				get { return Min.IsEmpty && Max.IsEmpty && Format == ImageFormat.MemoryBmp; }
 			}
-			public override bool Equals(object obj)
-			{
-				if (ReferenceEquals(null, obj)) return false;
-				if (ReferenceEquals(this, obj)) return true;
-				if(!(obj is _DirEntry)) return false;
-				return Equals((_DirEntry)obj);
-			}
+			
 		}
 		static Size _CrackSize(string str)
 		{
@@ -232,7 +226,7 @@ namespace ImageResizer
 			{
 				var f = Path.GetFileName(p);
 				var result = _CrackDir(f);
-				if(!result.Equals(_DirEntry.Empty))
+				if(!result.IsEmpty)
 				{
 					return result;
 				}
@@ -246,7 +240,7 @@ namespace ImageResizer
 			{
 				_DirEntry de = _GetDirEntry(e.FullPath, false);
 				ImageFormat fmt = _CrackFormat(Path.GetExtension(e.FullPath).Substring(1));
-				if (fmt != ImageFormat.MemoryBmp && !de.Equals(_DirEntry.Empty))
+				if (fmt != ImageFormat.MemoryBmp && !de.IsEmpty)
 				{
 					try
 					{
